@@ -1,4 +1,20 @@
 # Trix editor field for [MoonShine Laravel admin panel](https://moonshine.cutcode.dev)
 
-## Documentation
-[Read Trix field in Official MoonShine Documentation](https://moonshine.cutcode.dev/section/fields-wysiwyg)
+## Installation
+```shell
+composer require moonshine/trix
+```
+
+## Usage
+
+```php
+use MoonShine\Trix\Fields\Trix;
+
+Trix::make('Label')
+```
+
+```php
+use MoonShine\Trix\Fields\Trix;
+
+Trix::make('Label')->attachmentEndpoint('/endpoint')
+```
