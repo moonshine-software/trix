@@ -1,18 +1,20 @@
 <div class="hidden">
-    @include("moonshine::fields.textarea", [
-        'element' => $element,
-        'item' => $item,
-        'resource' => $resource,
-    ])
+    <x-moonshine::form.textarea
+        :attributes="$element->attributes()->merge([
+            'name' => $element->name()
+        ])->except('x-bind:id')"
+        ::id="$id('trix-editor')"
+    >{!! $value ?? '' !!}</x-moonshine::form.textarea>
 </div>
 
 <div>
     <trix-editor class="trix-editor" input="{{ $element->id() }}"></trix-editor>
 </div>
 
+@if($element->getAttachmentEndpoint())
 <script>
     (function () {
-        const HOST = "{{ route('moonshine.attachments') }}"
+        const HOST = "{{ $element->getAttachmentEndpoint() }}"
 
         addEventListener("trix-attachment-add", function (event) {
             if (event.attachment.file) {
@@ -77,4 +79,5 @@
         }
     })();
 </script>
+@endif
 

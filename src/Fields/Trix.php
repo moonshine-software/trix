@@ -8,10 +8,24 @@ use MoonShine\Fields\Textarea;
 
 class Trix extends Textarea
 {
-    protected static string $view = 'moonshine-trix::fields.trix';
+    protected string $view = 'moonshine-trix::fields.trix';
+
+    protected ?string $attachmentEndpoint = null;
 
     protected array $assets = [
         'vendor/moonshine-trix/js/trix.js',
         'vendor/moonshine-trix/css/trix.css',
     ];
+
+    public function attachmentEndpoint(string $value): self
+    {
+        $this->attachmentEndpoint = $value;
+
+        return $this;
+    }
+
+    public function getAttachmentEndpoint(): ?string
+    {
+        return $this->attachmentEndpoint;
+    }
 }
