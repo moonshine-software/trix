@@ -1,4 +1,4 @@
-# Trix editor field for [MoonShine Laravel admin panel](https://moonshine.cutcode.dev)
+# Trix editor field for [MoonShine Laravel admin panel](https://moonshine-laravel.com)
 
 ## Installation
 ```shell
