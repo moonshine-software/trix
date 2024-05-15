@@ -1,9 +1,9 @@
 <div class="hidden">
     <x-moonshine::form.textarea
         :attributes="$element->attributes()->merge([
+            'id' => $element->id(),
             'name' => $element->name()
         ])->except('x-bind:id')"
-        ::id="$id('trix-editor')"
     >{!! $value ?? '' !!}</x-moonshine::form.textarea>
 </div>
 
@@ -80,4 +80,3 @@
     })();
 </script>
 @endif
-
