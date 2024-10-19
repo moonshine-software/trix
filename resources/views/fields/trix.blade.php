@@ -1,20 +1,17 @@
 <div class="hidden">
     <x-moonshine::form.textarea
-        :attributes="$element->attributes()->merge([
-            'id' => $element->id(),
-            'name' => $element->name()
-        ])->except('x-bind:id')"
+        :attributes="$attributes->except(['x-bind:id', ':id'])->merge(['id' => 'trix-' . $column])"
     >{!! $value ?? '' !!}</x-moonshine::form.textarea>
 </div>
 
 <div>
-    <trix-editor class="trix-editor" input="{{ $element->id() }}"></trix-editor>
+    <trix-editor class="trix-editor" input="trix-{{ $column }}"></trix-editor>
 </div>
 
-@if($element->getAttachmentEndpoint())
+@if($attachmentEndpoint)
 <script>
     (function () {
-        const HOST = "{{ $element->getAttachmentEndpoint() }}"
+        const HOST = "{{ $attachmentEndpoint }}"
 
         addEventListener("trix-attachment-add", function (event) {
             if (event.attachment.file) {

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace MoonShine\Trix\Fields;
 
-use MoonShine\Fields\Textarea;
+use MoonShine\AssetManager\Css;
+use MoonShine\AssetManager\Js;
+use MoonShine\UI\Fields\Textarea;
 
 class Trix extends Textarea
 {
@@ -12,10 +14,13 @@ class Trix extends Textarea
 
     protected ?string $attachmentEndpoint = null;
 
-    protected array $assets = [
-        'vendor/moonshine-trix/js/trix.js',
-        'vendor/moonshine-trix/css/trix.css',
-    ];
+    public function getAssets(): array
+    {
+        return [
+            Js::make('vendor/moonshine-trix/js/trix.js'),
+            Css::make('vendor/moonshine-trix/css/trix.css'),
+        ];
+    }
 
     public function attachmentEndpoint(string $value): self
     {
@@ -27,5 +32,12 @@ class Trix extends Textarea
     public function getAttachmentEndpoint(): ?string
     {
         return $this->attachmentEndpoint;
+    }
+
+    protected function viewData(): array
+    {
+        return [
+            'attachmentEndpoint' => $this->getAttachmentEndpoint()
+        ];
     }
 }
