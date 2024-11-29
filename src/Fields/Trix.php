@@ -14,7 +14,7 @@ class Trix extends Textarea
 
     protected ?string $attachmentEndpoint = null;
 
-    public function getAssets(): array
+    protected function assets(): array
     {
         return [
             Js::make('vendor/moonshine-trix/js/trix.js'),
